@@ -1,9 +1,37 @@
 body {
   display: grid;
   /* Tilføj navngivne linjer */
-  grid-template-columns: 1fr minmax(0, 70ch) 1fr;
+  grid-template-columns:
+    [full-start]1fr
+    [content]minmax(0, 70ch)
+    [full-end]1fr;
 }
 
+header,
+main,
+footer {
+  display: grid;
+  grid-column: full-start / full-end;
+  grid-template-columns: subgrid;
+}
+
+section {
+  grid-column: content;
+}
 .breakout {
+  grid-column: full-start / full-end;
   background: #a8fad5;
+
+  display: grid;
+  grid-template-columns: subgrid;
+
+  container-type: inline-size;
+}
+
+.breakout > div {
+  grid-column: content-start / content-end;
+
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
 }
